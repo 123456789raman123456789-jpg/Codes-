@@ -7,13 +7,12 @@
 <style>
 body{
   margin:0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial;
   background:#ff1a1a;
   color:white;
   text-align:center;
 }
 
-/* Pages */
 .page{
   display:none;
   padding:40px 20px;
@@ -22,17 +21,14 @@ body{
   display:block;
 }
 
-/* Titles */
 h1{
   font-size:40px;
-  margin-bottom:20px;
 }
 .big{
   font-size:48px;
   font-weight:bold;
 }
 
-/* Input */
 input{
   padding:15px;
   width:70%;
@@ -42,7 +38,6 @@ input{
   margin-top:20px;
 }
 
-/* Buttons */
 button{
   margin-top:25px;
   padding:12px 30px;
@@ -50,10 +45,8 @@ button{
   border-radius:30px;
   background:#ddd;
   font-size:16px;
-  cursor:pointer;
 }
 
-/* Images */
 .img-row{
   display:flex;
   justify-content:center;
@@ -61,22 +54,20 @@ button{
   flex-wrap:wrap;
   margin-top:20px;
 }
+
 img{
   width:140px;
   border-radius:12px;
 }
 
-/* Icons */
 .icons{
   font-size:45px;
   margin:20px;
   cursor:pointer;
 }
 
-/* spacing */
 p{
   font-size:18px;
-  line-height:1.6;
   max-width:350px;
   margin:auto;
 }
@@ -88,13 +79,10 @@ p{
 <!-- 🔐 PAGE 1 -->
 <div id="p1" class="page active">
   <h1>Enter Passcode 🔐</h1>
-
   <input type="password" id="pass" placeholder="Enter code">
-
   <br>
   <button onclick="check()">NEXT</button>
 </div>
-
 
 <!-- 🎁 PAGE 2 -->
 <div id="p2" class="page">
@@ -108,42 +96,39 @@ p{
   <button onclick="go(1)">← Back</button>
 </div>
 
-
-<!-- 📸 PAGE 3 (2 photos) -->
+<!-- 📸 PAGE 3 -->
 <div id="p3" class="page">
   <h1>Best Moments 💙</h1>
 
   <div class="img-row">
-    <img src="img1.jpg">
-    <img src="img2.jpg">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
   </div>
 
   <button onclick="go(2)">← Back</button>
   <button onclick="go(4)">Next →</button>
 </div>
 
-
-<!-- ❤️ PAGE 4 (1 photo) -->
+<!-- ❤️ PAGE 4 -->
 <div id="p4" class="page">
   <div class="big">HAPPY BIRTHDAY, MY LOVE ❤️</div>
 
   <p>May our love continue to blossom and flourish forever.</p>
 
   <div class="img-row">
-    <img src="img3.jpg">
+    <img src="photo3.jpg">
   </div>
 
   <button onclick="go(3)">← Back</button>
   <button onclick="go(5)">Next →</button>
 </div>
 
-
-<!-- 💌 PAGE 5 (last photo + text) -->
+<!-- 💌 PAGE 5 -->
 <div id="p5" class="page">
   <h1>My Love 💖</h1>
 
   <div class="img-row">
-    <img src="img4.jpg">
+    <img src="photo4.jpg">
   </div>
 
   <p>
@@ -155,10 +140,8 @@ p{
   <button onclick="go(4)">← Back</button>
 </div>
 
-
 <!-- 🎵 MUSIC -->
-<audio id="music" src="song.mp3"></audio>
-
+<audio id="music" src="music.mp3"></audio>
 
 <script>
 function go(page){
