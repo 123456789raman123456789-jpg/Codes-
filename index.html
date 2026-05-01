@@ -5,124 +5,154 @@
 <title>For You ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #ff1a1a;
-  color: white;
-  text-align: center;
+body{
+  margin:0;
+  font-family: 'Arial', sans-serif;
+  background:#ff1a1a;
+  color:white;
+  text-align:center;
 }
 
 /* Pages */
-.page {
-  display: none;
-  padding: 30px;
+.page{
+  display:none;
+  padding:40px 20px;
 }
-.active {
-  display: block;
+.active{
+  display:block;
+}
+
+/* Titles */
+h1{
+  font-size:40px;
+  margin-bottom:20px;
+}
+.big{
+  font-size:48px;
+  font-weight:bold;
+}
+
+/* Input */
+input{
+  padding:15px;
+  width:70%;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  margin-top:20px;
 }
 
 /* Buttons */
-button {
-  padding: 10px 25px;
-  border-radius: 25px;
-  border: none;
-  margin: 10px;
-  cursor: pointer;
+button{
+  margin-top:25px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ddd;
+  font-size:16px;
+  cursor:pointer;
 }
 
 /* Images */
-img {
-  width: 200px;
-  border-radius: 10px;
-  margin: 10px;
+.img-row{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:20px;
 }
-
-/* Bigger title like screenshot */
-.big-text {
-  font-size: 40px;
-  font-weight: bold;
+img{
+  width:140px;
+  border-radius:12px;
 }
 
 /* Icons */
-.icons {
-  font-size: 50px;
-  margin: 20px;
-  cursor: pointer;
+.icons{
+  font-size:45px;
+  margin:20px;
+  cursor:pointer;
+}
+
+/* spacing */
+p{
+  font-size:18px;
+  line-height:1.6;
+  max-width:350px;
+  margin:auto;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔐 PAGE 1 (PASSCODE) -->
-<div id="page1" class="page active">
+<!-- 🔐 PAGE 1 -->
+<div id="p1" class="page active">
   <h1>Enter Passcode 🔐</h1>
 
-  <input type="password" id="pass" placeholder="Enter code" style="padding:15px;font-size:20px;border-radius:10px;border:none;">
+  <input type="password" id="pass" placeholder="Enter code">
 
-  <br><br>
-
-  <button onclick="checkPass()">NEXT</button>
+  <br>
+  <button onclick="check()">NEXT</button>
 </div>
 
 
-<!-- 🎁 PAGE 2 (GIFTS) -->
-<div id="page2" class="page">
+<!-- 🎁 PAGE 2 -->
+<div id="p2" class="page">
   <h1>Gifts for you 🎁</h1>
 
   <div>
-    <span class="icons" onclick="showPage(5)">💌</span>
-    <span class="icons" onclick="showPage(3)">📸</span>
+    <span class="icons" onclick="go(5)">💌</span>
+    <span class="icons" onclick="go(3)">📸</span>
   </div>
 
-  <button onclick="showPage(1)">⬅ Back</button>
-  <button onclick="showPage(3)">Next ➡</button>
+  <button onclick="go(1)">← Back</button>
 </div>
 
 
-<!-- 📸 PAGE 3 (2 PHOTOS) -->
-<div id="page3" class="page">
+<!-- 📸 PAGE 3 (2 photos) -->
+<div id="p3" class="page">
   <h1>Best Moments 💙</h1>
 
-  <img src="img1.jpg">
-  <img src="img2.jpg">
+  <div class="img-row">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+  </div>
 
-  <br>
-
-  <button onclick="showPage(2)">⬅ Back</button>
-  <button onclick="showPage(4)">Next ➡</button>
+  <button onclick="go(2)">← Back</button>
+  <button onclick="go(4)">Next →</button>
 </div>
 
 
-<!-- ❤️ PAGE 4 (BIRTHDAY PAGE) -->
-<div id="page4" class="page">
-  <div class="big-text">HAPPY BIRTHDAY, MY LOVE ❤️</div>
+<!-- ❤️ PAGE 4 (1 photo) -->
+<div id="p4" class="page">
+  <div class="big">HAPPY BIRTHDAY, MY LOVE ❤️</div>
 
   <p>May our love continue to blossom and flourish forever.</p>
 
-  <img src="img3.jpg">
+  <div class="img-row">
+    <img src="img3.jpg">
+  </div>
 
-  <br>
-
-  <button onclick="showPage(3)">⬅ Back</button>
-  <button onclick="showPage(5)">Next ➡</button>
+  <button onclick="go(3)">← Back</button>
+  <button onclick="go(5)">Next →</button>
 </div>
 
 
-<!-- 💌 PAGE 5 (LETTER) -->
-<div id="page5" class="page">
+<!-- 💌 PAGE 5 (last photo + text) -->
+<div id="p5" class="page">
   <h1>My Love 💖</h1>
 
-  <img src="img4.jpg">
+  <div class="img-row">
+    <img src="img4.jpg">
+  </div>
 
   <p>
-    My love, ever since you came into my life, everything feels brighter.  
-    You are my happiness, my peace, and my forever.  
+    My love, ever since you came into my life, everything feels brighter.
+    You are my happiness, my peace, and my forever.
     I will always be there for you ❤️
   </p>
 
-  <button onclick="showPage(4)">⬅ Back</button>
+  <button onclick="go(4)">← Back</button>
 </div>
 
 
@@ -131,21 +161,19 @@ img {
 
 
 <script>
-function showPage(num){
-  let pages = document.querySelectorAll(".page");
-  pages.forEach(p => p.classList.remove("active"));
-
-  document.getElementById("page"+num).classList.add("active");
+function go(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p"+page).classList.add("active");
 }
 
-function checkPass(){
-  let code = document.getElementById("pass").value;
+function check(){
+  let code=document.getElementById("pass").value;
 
-  if(code === "0208"){
+  if(code==="0208"){
     document.getElementById("music").play();
-    showPage(2);
-  } else {
-    alert("Wrong Passcode 😅");
+    go(2);
+  }else{
+    alert("Wrong passcode 😅");
   }
 }
 </script>
