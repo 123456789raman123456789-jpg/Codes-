@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #ff4d6d;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  width: 80%;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+h1 {
+  font-size: 28px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<!-- PASSCODE -->
+<div id="step1">
+  <h2>Enter Passcode 🔒</h2>
+  <input type="password" id="code" placeholder="Enter code">
+  <br>
+  <button onclick="checkCode()">Next</button>
+</div>
+
+<!-- SURPRISE -->
+<div id="step2" class="hidden">
+  <h2>Ready for a surprise? 💖</h2>
+  <button onclick="nextStep(3)">Yes 💫</button>
+</div>
+
+<!-- PHOTOS -->
+<div id="step3" class="hidden">
+  <h2>Who is this beautiful soul 💕</h2>
+  <img id="photo" src="photo1.jpg">
+  <br>
+  <button onclick="nextPhoto()">Next</button>
+</div>
+
+<!-- SONG -->
+<div id="step4" class="hidden">
+  <h2>Tum ho toh sab accha hai 💗</h2>
+  <button onclick="playMusic()">Play Song 🎵</button>
+  <br>
+  <button onclick="nextStep(5)">Next</button>
+</div>
+
+<!-- FINAL MESSAGE -->
+<div id="step5" class="hidden">
+  <h1>Happy Birthday Babay ❤️</h1>
+
+  <p style="padding:15px; font-size:16px; line-height:1.6;">
+  I don’t know if I say this enough, but you matter to me more than you realize.  
+  Not just today, but every single day, you are someone I choose with my whole heart.  
+
+  I know sometimes things feel uncertain for you… but one thing I want you to never doubt is me.  
+  I’m here, I’m not going anywhere, and I’m not here to hurt you.  
+
+  You are safe with me, in my words, in my intentions, and in everything I feel for you.  
+
+  I don’t just love you for the good moments… I love you even in your overthinking, your fears, your silence.  
+
+  And I promise, no matter what… I’ll keep choosing you again and again.  
+
+  Happy birthday, my babay 💖
+  </p>
+</div>
+
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+let currentPhoto = 1;
+
+function checkCode() {
+  let code = document.getElementById("code").value;
+  if(code === "0208") {
+    nextStep(2);
+  } else {
+    alert("Wrong code 😒");
+  }
+}
+
+function nextStep(step) {
+  document.querySelectorAll("div[id^='step']").forEach(el => el.classList.add("hidden"));
+  document.getElementById("step" + step).classList.remove("hidden");
+}
+
+function nextPhoto() {
+  currentPhoto++;
+  if(currentPhoto > 4) {
+    nextStep(4);
+    return;
+  }
+  document.getElementById("photo").src = "photo" + currentPhoto + ".jpg";
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+</script>
+
+</body>
+</html>
