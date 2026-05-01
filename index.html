@@ -5,158 +5,162 @@
 <title>For You ❤️</title>
 
 <style>
-body{
-  margin:0;
-  font-family: Arial;
-  background:#ff1a1a;
-  color:white;
-  text-align:center;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ff1a1a;
+  color: white;
+  text-align: center;
 }
 
-.page{
-  display:none;
-  padding:40px 20px;
-}
-.active{
-  display:block;
-}
-
-h1{
-  font-size:40px;
-}
-.big{
-  font-size:48px;
-  font-weight:bold;
+/* ===== COMMON ===== */
+.page {
+  display: none;
+  height: 100vh;
+  padding: 30px 15px;
 }
 
-input{
-  padding:15px;
-  width:70%;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  margin-top:20px;
+.active {
+  display: block;
 }
 
-button{
-  margin-top:25px;
-  padding:12px 30px;
-  border:none;
-  border-radius:30px;
-  background:#ddd;
-  font-size:16px;
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
-.img-row{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-top:20px;
+h2 {
+  font-size: 20px;
+  font-weight: 400;
 }
 
-img{
-  width:140px;
-  border-radius:12px;
+button {
+  margin: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
 }
 
-.icons{
-  font-size:45px;
-  margin:20px;
-  cursor:pointer;
+/* ===== PASSCODE ===== */
+input {
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
+  font-size: 18px;
+  text-align: center;
 }
 
-p{
-  font-size:18px;
-  max-width:350px;
-  margin:auto;
+/* ===== IMAGE STYLES ===== */
+.img1 {
+  width: 120px;
+  border-radius: 15px;
 }
+
+.img2 {
+  width: 45%;
+  border-radius: 15px;
+}
+
+/* layout */
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- 🔐 PAGE 1 -->
-<div id="p1" class="page active">
+<!-- 🎵 SONG -->
+<audio id="song" src="music.mp3"></audio>
+
+<!-- 🔐 PASSCODE -->
+<div class="page active" id="lock">
   <h1>Enter Passcode 🔐</h1>
-  <input type="password" id="pass" placeholder="Enter code">
-  <br>
-  <button onclick="check()">NEXT</button>
+  <input id="code" placeholder="Enter code"><br><br>
+  <button onclick="unlock()">Next</button>
 </div>
 
-<!-- 🎁 PAGE 2 -->
-<div id="p2" class="page">
-  <h1>Gifts for you 🎁</h1>
+<!-- ❤️ PAGE 1 (1 PHOTO RIGHT SIDE) -->
+<div class="page" id="p1">
+  <h1>HAPPY BIRTHDAY, MY LOVE ❤️</h1>
+  <h2>May our love continue to blossom and flourish forever.</h2>
 
-  <div>
-    <span class="icons" onclick="go(5)">💌</span>
-    <span class="icons" onclick="go(3)">📸</span>
+  <div class="right">
+    <img src="photo1.jpg" class="img1">
   </div>
 
-  <button onclick="go(1)">← Back</button>
+  <button onclick="prev()">← Back</button>
+  <button onclick="next()">Next →</button>
 </div>
 
-<!-- 📸 PAGE 3 -->
-<div id="p3" class="page">
+<!-- 💙 PAGE 2 (2 PHOTOS) -->
+<div class="page" id="p2">
   <h1>Best Moments 💙</h1>
 
-  <div class="img-row">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
+  <div class="row">
+    <img src="photo2.jpg" class="img2">
+    <img src="photo3.jpg" class="img2">
   </div>
 
-  <button onclick="go(2)">← Back</button>
-  <button onclick="go(4)">Next →</button>
+  <button onclick="prev()">← Back</button>
+  <button onclick="next()">Next →</button>
 </div>
 
-<!-- ❤️ PAGE 4 -->
-<div id="p4" class="page">
-  <div class="big">HAPPY BIRTHDAY, MY LOVE ❤️</div>
-
-  <p>May our love continue to blossom and flourish forever.</p>
-
-  <div class="img-row">
-    <img src="photo3.jpg">
-  </div>
-
-  <button onclick="go(3)">← Back</button>
-  <button onclick="go(5)">Next →</button>
-</div>
-
-<!-- 💌 PAGE 5 -->
-<div id="p5" class="page">
+<!-- 💌 PAGE 3 (1 PHOTO) -->
+<div class="page" id="p3">
   <h1>My Love 💖</h1>
 
-  <div class="img-row">
-    <img src="photo4.jpg">
-  </div>
+  <img src="photo4.jpg" class="img1"><br><br>
 
-  <p>
-    My love, ever since you came into my life, everything feels brighter.
-    You are my happiness, my peace, and my forever.
-    I will always be there for you ❤️
-  </p>
+  <h2>
+    Aap meri life ka sabse beautiful part ho…  
+    aur main bas itna chahta hoon ki aap hamesha khush raho 💕
+  </h2>
 
-  <button onclick="go(4)">← Back</button>
+  <button onclick="prev()">← Back</button>
 </div>
 
-<!-- 🎵 MUSIC -->
-<audio id="music" src="music.mp3"></audio>
-
 <script>
-function go(page){
+let pages = ["lock","p1","p2","p3"];
+let current = 0;
+
+function show(i){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById("p"+page).classList.add("active");
+  document.getElementById(pages[i]).classList.add("active");
 }
 
-function check(){
-  let code=document.getElementById("pass").value;
+function next(){
+  if(current < pages.length-1){
+    current++;
+    show(current);
+  }
+}
 
-  if(code==="0208"){
-    document.getElementById("music").play();
-    go(2);
-  }else{
-    alert("Wrong passcode 😅");
+function prev(){
+  if(current > 1){
+    current--;
+    show(current);
+  }
+}
+
+function unlock(){
+  let val = document.getElementById("code").value;
+  if(val === "0208"){   // change if needed
+    current = 1;
+    show(current);
+    document.getElementById("song").play();
+  } else {
+    alert("Wrong passcode 😏");
   }
 }
 </script>
