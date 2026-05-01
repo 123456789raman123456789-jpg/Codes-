@@ -3,75 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Her ❤️</title>
+<title>For You ❤️</title>
 
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial;
   background: #ff2e2e;
   color: white;
-  overflow: hidden;
+  text-align: center;
 }
 
 .page {
   display: none;
   height: 100vh;
-  width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  text-align: center;
-  transition: 0.5s;
 }
 
 .active {
   display: flex;
-  animation: fade 0.6s ease;
-}
-
-@keyframes fade {
-  from {opacity:0; transform:scale(0.95);}
-  to {opacity:1; transform:scale(1);}
-}
-
-button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  color: black;
-  font-weight: bold;
-  margin-top: 20px;
 }
 
 input {
   padding: 10px;
-  font-size: 18px;
-  text-align: center;
   border-radius: 10px;
   border: none;
 }
 
-/* images */
+button {
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
 .img {
   width: 220px;
   border-radius: 15px;
-  margin: 15px 0;
+  margin-top: 20px;
 }
 
-/* gift icons */
 .gifts {
   display: flex;
   gap: 20px;
-}
-
-.gift {
   font-size: 40px;
-  cursor: pointer;
 }
 
-/* love letter */
 .letter {
   background: white;
   color: black;
@@ -80,28 +60,98 @@ input {
   width: 80%;
   max-width: 300px;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 PASSCODE -->
-<div class="page active" id="p1">
+<!-- PAGE 1 -->
+<div id="p1" class="page active">
   <h2>Enter Passcode 🔐</h2>
-  <input id="code" maxlength="4" placeholder="****">
+  <input id="code" placeholder="****">
   <button onclick="checkCode()">NEXT</button>
 </div>
 
-<!-- PAGE 2 CAMERA -->
-<div class="page" id="p2">
+<!-- PAGE 2 -->
+<div id="p2" class="page">
   <h2>Ready for a surprise? 📸</h2>
   <img src="photo1.jpg" class="img">
   <button onclick="next(3)">Take Photo</button>
 </div>
 
-<!-- PAGE 3 BEAUTIFUL -->
-<div class="page" id="p3">
+<!-- PAGE 3 -->
+<div id="p3" class="page">
   <h2>Who is this beautiful 😏</h2>
   <img src="photo2.jpg" class="img">
-  <button
+  <button onclick="next(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="p4" class="page">
+  <h2>Gifts for you 🎁</h2>
+  <div class="gifts">
+    <div onclick="next(5)">💌</div>
+    <div onclick="next(6)">📷</div>
+    <div onclick="next(7)">🎵</div>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div id="p5" class="page">
+  <div class="letter">
+    <h3>My Love ❤️</h3>
+    <p>
+      I don’t always say this,  
+      but you really mean a lot to me.  
+
+      You make everything feel better.  
+      And honestly… I’m really glad I have you. ❤️
+    </p>
+  </div>
+  <button onclick="next(8)">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div id="p6" class="page">
+  <h2>Best Moments 📸</h2>
+  <img src="photo3.jpg" class="img">
+  <button onclick="next(8)">Next</button>
+</div>
+
+<!-- PAGE 7 -->
+<div id="p7" class="page">
+  <h2>Our Song 🎶</h2>
+  <audio controls>
+    <source src="music.mp3">
+  </audio>
+  <button onclick="next(8)">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div id="p8" class="page">
+  <h1>Happy Birthday Babay 🎂❤️</h1>
+  <img src="photo4.jpg" class="img">
+  <p>tum ho toh sab accha hai ❤️</p>
+</div>
+
+<script>
+
+function next(n){
+  document.querySelector(".active").classList.remove("active");
+  document.getElementById("p"+n).classList.add("active");
+}
+
+function checkCode(){
+  let code = document.getElementById("code").value;
+
+  if(code === "0208"){
+    next(2);
+  } else {
+    alert("Wrong passcode 😅");
+  }
+}
+
+</script>
+
+</body>
+</html>
